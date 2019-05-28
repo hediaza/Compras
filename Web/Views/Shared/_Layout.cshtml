@@ -1,0 +1,90 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title> @ViewBag.Title</title>
+
+    @Styles.Render("~/plugins/toastrStyles")
+    @Styles.Render("~/plugins/sweetAlertStyles")
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/font-awesome/css")
+
+    <!-- Jquery scripts-->
+    @Scripts.Render("~/bundles/jquery.all")
+    <!-- Kendo styles -->
+    <link href="@Url.Content("~/Content/kendo/2018.1.117/kendo.common.min.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/kendo/2018.1.117/kendo.silver.min.css")" rel="stylesheet" type="text/css" />
+    <!-- Kendo scripts -->
+    @*	<script src="@Url.Content("~/Scripts/kendo/2018.1.117/kendo.custom-2017-08-07.min.js")"></script>*@
+    <script src="@Url.Content("~/Scripts/kendo/2018.1.117/jszip.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2018.1.117/kendo.all.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2018.1.117/kendo.aspnetmvc.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2018.1.117/cultures/kendo.culture.es-CO.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/kendo/2018.1.117/messages/kendo.messages.es-CO.min.js")"></script>
+    <!-- PreApp -->
+    <script src="@Url.Content("~/Scripts/app/PreApp.js")"></script>
+    <!-- Init PreApp -->
+    <script>PreApp.init();</script>
+    <script src="@Url.Content("~/Scripts/kendo.modernizr.custom.js")"></script>
+</head>
+<body class="fixed-sidebar">       
+    <!-- Wrapper-->
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        @Html.Partial("_Navigation")
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg">
+
+            <!-- Top Navbar -->
+            @Html.Partial("_TopNavbar")
+
+            <!-- Main view  -->
+            <div class="animated fadeIn">
+                @RenderBody()
+            </div>            
+
+        </div>
+
+    </div>
+    
+    <!-- Modals -->
+    <div id="modal" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <div id="modal2" class="modal fade in">
+        <div class="modal-dialog">
+            <div class="modal-content">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->    
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/plugins/metsiMenu")
+    @Scripts.Render("~/plugins/pace")
+    @Scripts.Render("~/plugins/slimScroll")
+    @Scripts.Render("~/bundles/inspinia")
+    @Scripts.Render("~/plugins/toastr")
+    @Scripts.Render("~/plugins/sweetAlert")
+
+    <!-- App -->
+    <script src="@Url.Content("~/Scripts/app/App.js")"></script>
+    @RenderSection("scripts", required: false)
+
+    <!-- Init App -->
+    <script>
+        $(function () {
+            App.init();
+        });
+    </script>
+</body>
+</html>
