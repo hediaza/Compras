@@ -2,13 +2,17 @@
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
-using Dapper;
 
 namespace SqlServerDB
 {
-    public class DapperConnector: IDisposable
+    public interface IDbConnector: IDisposable
     {
-        public IDbConnection connection;
+        IDbConnection GetConnection();
+    }
+
+    public class DapperConnector: IDbConnector
+    {
+        private IDbConnection connection;
 
         public DapperConnector() : this("SqlServerConnection") {
         }
@@ -21,6 +25,10 @@ namespace SqlServerDB
 
             // Para consultas mapea snake_case a PascalCase
             //DefaultTypeMap.MatchNamesWithUnderscores = true;
+        }
+
+        public IDbConnection GetConnection() {
+            return connection;
         }
 
         public void Dispose()

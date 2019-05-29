@@ -13,8 +13,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ComprasWeb</RootNamespace>
-    <AssemblyName>ComprasWeb</AssemblyName>
+    <RootNamespace>Web</RootNamespace>
+    <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -211,7 +211,9 @@
     <Compile Include="Areas\COMPRAS\COMPRASAreaRegistration.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\INVENTARIOSAreaRegistration.cs" />
+    <Compile Include="Areas\TIENDAS\Controllers\TiendaController.cs" />
     <Compile Include="Areas\TIENDAS\TIENDASAreaRegistration.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -2875,9 +2877,10 @@
     <Folder Include="Areas\INVENTARIOS\Controllers\" />
     <Folder Include="Areas\INVENTARIOS\Models\" />
     <Folder Include="Areas\INVENTARIOS\Views\Shared\" />
-    <Folder Include="Areas\TIENDAS\Controllers\" />
     <Folder Include="Areas\TIENDAS\Models\" />
     <Folder Include="Areas\TIENDAS\Views\Shared\" />
+    <Folder Include="Areas\TIENDAS\Views\Tiendas\" />
+    <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
@@ -2887,6 +2890,10 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{be4f2820-065e-4613-a170-97d723e7db26}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SqlServerDB\SqlServerDB.csproj">
+      <Project>{84495211-7827-445B-8FEC-DD2581C075E2}</Project>
+      <Name>SqlServerDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{f22c6b9e-912e-4123-9cc5-80818f723eed}</Project>

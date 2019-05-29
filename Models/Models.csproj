@@ -85,6 +85,7 @@
   <ItemGroup>
     <Compile Include="GLOBAL\SelectListItem2.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TIENDAS\TiendaDTO.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">
