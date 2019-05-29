@@ -1,8 +1,8 @@
 ﻿using SqlServerDB;
 
-namespace BusinessLogic
+namespace Repository
 {
-    public class BaseBL
+    public class BaseRepository
     {
         protected IDbConnector _db;
     }

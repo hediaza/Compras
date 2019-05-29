@@ -15,18 +15,26 @@ namespace Repository.TIENDAS
         int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom);
     }
 
-    public class TiendaRepository : ITiendasRepository
+    public class TiendaRepository : BaseRepository, ITiendasRepository
     {
-        private IDbConnector db;
-
         public TiendaRepository(IDbConnector db) {
-            this.db = db;
+            _db = db;
         }
 
-        public int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom = null) {
-            int id = db.GetConnection().QuerySingle<int>(@"INSERT INTO dbo.Tiendas(Nombre)
-                                                            OUTPUT Inserted.ID
-                                                            VALUES(@Nombre);", tiendaDTO, atom);
+        public int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom = null) {           
+            int id = _db.GetConnection().QuerySingle<int>(@"INSERT INTO dbo.Tiendas (Nombre, 
+                                                                                    TipoId, 
+                                                                                    HoraApertura, 
+                                                                                    MinApertura, 
+                                                                                    HoraCierre, 
+                                                                                    MinCierre) 
+                                                                            OUTPUT Inserted.ID
+                                                                            VALUES (@Nombre, 
+                                                                                    @TipoId, 
+                                                                                    @HoraApertura, 
+                                                                                    @MinApertura, 
+                                                                                    @HoraCierre,
+                                                                                    @MinCierre);", tiendaDTO, atom);
 
             return id;
         }

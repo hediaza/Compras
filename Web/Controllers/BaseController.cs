@@ -9,6 +9,6 @@ namespace Web.Controllers
 {
     public class BaseController : Controller
     {
-        protected IDbConnector db;
+        protected IDbConnector _db;
     }
 }

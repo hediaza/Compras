@@ -211,7 +211,9 @@
     <Compile Include="Areas\COMPRAS\COMPRASAreaRegistration.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\INVENTARIOSAreaRegistration.cs" />
+    <Compile Include="Areas\TIENDAS\Controllers\HorarioController.cs" />
     <Compile Include="Areas\TIENDAS\Controllers\TiendaController.cs" />
+    <Compile Include="Areas\TIENDAS\Controllers\TipoTiendaController.cs" />
     <Compile Include="Areas\TIENDAS\TIENDASAreaRegistration.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
@@ -224,6 +226,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\TIENDAS\Scripts\Tienda\Index.js" />
+    <Content Include="Areas\TIENDAS\Scripts\Tienda\Registrar.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -735,9 +739,15 @@
     <Content Include="Content\kendo\2018.1.117\images\kendoui.woff" />
     <Content Include="Connections.config" />
     <Content Include="Areas\COMPRAS\Views\web.config" />
-    <Content Include="Areas\TIENDAS\Views\web.config" />
+    <Content Include="Areas\TIENDAS\Views\web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Areas\INVENTARIOS\Views\web.config" />
     <Content Include="Areas\FACTURACION\Views\web.config" />
+    <Content Include="Areas\TIENDAS\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\TIENDAS\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\TIENDAS\Views\Tienda\Index.cshtml" />
+    <Content Include="Areas\TIENDAS\Views\Tienda\Registrar.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2878,8 +2888,9 @@
     <Folder Include="Areas\INVENTARIOS\Models\" />
     <Folder Include="Areas\INVENTARIOS\Views\Shared\" />
     <Folder Include="Areas\TIENDAS\Models\" />
-    <Folder Include="Areas\TIENDAS\Views\Shared\" />
+    <Folder Include="Areas\TIENDAS\Views\Horarios\" />
     <Folder Include="Areas\TIENDAS\Views\Tiendas\" />
+    <Folder Include="Areas\TIENDAS\Views\TipoTienda\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

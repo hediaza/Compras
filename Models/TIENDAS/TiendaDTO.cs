@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace Models.TIENDAS
 {
@@ -13,5 +8,17 @@ namespace Models.TIENDAS
 
         [Required]
         public string Nombre { get; set; }
+
+        [Required]
+        [Display(Name = "Tipo")]
+        public int TipoId { get; set; }
+
+        [Required]
+        [Display(Name = "Hora de pertura")]
+        public int HoraAperturaId { get; set; }
+
+        [Required]
+        [Display(Name = "Hora de cierre")]
+        public int HoraCierreId { get; set; }
     }
 }

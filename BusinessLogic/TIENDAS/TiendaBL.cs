@@ -12,8 +12,8 @@ namespace BusinessLogic.TIENDAS
         
         public TiendaBL(IDbConnector db)
         {
-            this.db = db;
-            _repository = new TiendaRepository(db);
+            _db = db;
+            _repository = new TiendaRepository(_db);
         }
 
         public Result<int> Registrar(TiendaDTO tiendaDTO)
