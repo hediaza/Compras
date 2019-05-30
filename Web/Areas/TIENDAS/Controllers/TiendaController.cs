@@ -35,6 +35,10 @@ namespace Web.Areas.TIENDAS.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Metodo que permite listar las tiendas que se encuentran en la BD
+        /// </summary>
+        /// <returns></returns>
         public JsonResult ListarGrid([DataSourceRequest]DataSourceRequest request)
         {
 
