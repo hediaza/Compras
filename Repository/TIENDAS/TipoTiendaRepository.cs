@@ -13,17 +13,25 @@ namespace Repository.TIENDAS
 {
     public interface ITipoTiendaRepository
     {
-        IEnumerable<SelectListItem2> ListarDropDown();
+        IEnumerable<TipoTiendaDTO> ListarDropDown();
     }
 
     public class TipoTiendaRepository : BaseRepository, ITipoTiendaRepository
     {
+        #region INIT
         public TipoTiendaRepository(IDbConnector db) {
             _db = db;
         }
+        #endregion
 
-        public IEnumerable<SelectListItem2> ListarDropDown() {
-            throw new NotImplementedException();
+        public IEnumerable<TipoTiendaDTO> ListarDropDown() {
+            var list = _db.GetConnection()
+                          .Query<TipoTiendaDTO>(@"SELECT t.Id, 
+                                                         t.Nombre, 
+                                                         t.Codigo
+                                                  FROM dbo.TipoTienda t;");
+
+            return list;
         }
     }
 }

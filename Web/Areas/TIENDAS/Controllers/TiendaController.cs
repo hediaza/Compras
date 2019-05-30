@@ -1,5 +1,7 @@
 ﻿using BusinessLogic.TIENDAS;
 using Common.Utils;
+using Kendo.Mvc.Extensions;
+using Kendo.Mvc.UI;
 using Models.TIENDAS;
 using SqlServerDB;
 using System;
@@ -33,6 +35,25 @@ namespace Web.Areas.TIENDAS.Controllers
             return View();
         }
 
+        public JsonResult ListarGrid([DataSourceRequest]DataSourceRequest request)
+        {
+
+            var listarDropDown = _bl.ListarGrid();
+            if (!listarDropDown.Success)
+            {
+                ModelState.AddModelError("Error", listarDropDown.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+
+            //Salida Success 
+            var ds = new DataSourceResult()
+            {
+                Data = listarDropDown.Data,
+                Total = listarDropDown.Data.Count()
+            };
+            return Json(ds);
+        }
+        
 
         #endregion
 
@@ -62,6 +83,7 @@ namespace Web.Areas.TIENDAS.Controllers
             var registrar = _bl.Registrar(tiendaDTO);
             if (!registrar.Success)
             {
+                result.Message = registrar.Message;
                 result.Success = false;
                 return Json(result);
             }
@@ -79,14 +101,45 @@ namespace Web.Areas.TIENDAS.Controllers
         #region UPDATE
 
         [HttpGet]
-        public ActionResult Actualizar()
+        public ActionResult Editar(int id)
         {
-            throw new NotImplementedException();
+            var obtener = _bl.Obtener(id);
+            if (!obtener.Success) {
+                ModelState.AddModelError("Error", obtener.Message);
+                return PartialView();
+            }
+
+            return PartialView(obtener.Data);
         }
 
         [HttpPost]
-        public JsonResult Actualizar(TiendaDTO tiendaDTO) {
-            throw new NotImplementedException();
+        public JsonResult Editar(TiendaDTO tiendaDTO)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var editar = _bl.Editar(tiendaDTO);
+            if (!editar.Success)
+            {
+                result.Success = false;
+                result.Message = editar.Message;                
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = editar.Message;
+
+            return Json(result);
         }
 
         #endregion
@@ -95,19 +148,36 @@ namespace Web.Areas.TIENDAS.Controllers
         [HttpPost]
         public JsonResult Eliminar(int id)
         {
-            throw new NotImplementedException();
+            // Inicializaciones
+            var result = new Result();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var eliminar = _bl.Eliminar(id);
+            if (!eliminar.Success)
+            {
+                result.Success = false;
+                result.Message = eliminar.Message;
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = eliminar.Message;
+
+            return Json(result);
         }
         #endregion
 
         #region OTROS
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                _db.Dispose();
-            }
-            base.Dispose(disposing);
-        }
+       
         #endregion
     }
 }

@@ -17,26 +17,71 @@ namespace Repository.TIENDAS
 
     public class TiendaRepository : BaseRepository, ITiendasRepository
     {
+        #region INIT
         public TiendaRepository(IDbConnector db) {
             _db = db;
         }
+        #endregion
 
         public int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom = null) {           
-            int id = _db.GetConnection().QuerySingle<int>(@"INSERT INTO dbo.Tiendas (Nombre, 
-                                                                                    TipoId, 
-                                                                                    HoraApertura, 
-                                                                                    MinApertura, 
-                                                                                    HoraCierre, 
-                                                                                    MinCierre) 
-                                                                            OUTPUT Inserted.ID
-                                                                            VALUES (@Nombre, 
-                                                                                    @TipoId, 
-                                                                                    @HoraApertura, 
-                                                                                    @MinApertura, 
-                                                                                    @HoraCierre,
-                                                                                    @MinCierre);", tiendaDTO, atom);
+            int id = _db.GetConnection()
+                        .QuerySingle<int>(@"INSERT INTO dbo.Tiendas (Nombre, 
+                                                                    TipoId, 
+                                                                    HorarioAperturaId, 
+                                                                    HorarioCierreId) 
+                                                            OUTPUT Inserted.ID
+                                                            VALUES (@Nombre, 
+                                                                    @TipoId, 
+                                                                    @HorarioAperturaId, 
+                                                                    @HorarioCierreId);", tiendaDTO, atom);
 
             return id;
+        }
+
+        public IEnumerable<TiendaGridDTO> ListarGrid() {
+            var list = _db.GetConnection()
+                          .Query<TiendaGridDTO>(@"SELECT t.Id, 
+	                                                     t.Nombre, 
+                                                         t1.Nombre as Tipo, 
+	                                                     h.Nombre as HorarioApertura, 
+	                                                     h1.Nombre as HorarioCierre
+                                                FROM dbo.Tiendas t 
+	                                                INNER JOIN dbo.TipoTienda t1 ON ( t.TipoId = t1.Id  )  
+	                                                INNER JOIN dbo.Horarios h ON ( t.HorarioAperturaId = h.Id  )  
+	                                                INNER JOIN dbo.Horarios h1 ON ( t.HorarioCierreId = h1.Id  );");
+
+            return list;
+        }
+
+        public TiendaDTO Obtener(int id) {
+            var tiendaDTO = _db.GetConnection()
+                               .QuerySingle<TiendaDTO>(@"SELECT t.Id, 
+                                                                t.Nombre, 
+                                                                t.TipoId, 
+                                                                t.HorarioAperturaId, 
+                                                                t.HorarioCierreId
+                                                        FROM dbo.Tiendas t
+                                                        WHERE t.Id = @Id;", new { Id = id });
+
+            return tiendaDTO;
+        }
+
+        public void Editar(TiendaDTO tiendaDTO, IDbTransaction atom = null)
+        {
+            _db.GetConnection()
+               .Execute(@"UPDATE dbo.Tiendas
+                            SET Nombre = @Nombre,
+                                TipoId = @TipoId,
+                                HorarioAperturaId = @HorarioAperturaId,
+                                HorarioCierreId = @HorarioCierreId
+                            WHERE Id = @Id;", tiendaDTO, atom);
+        }
+
+        public void Eliminar(int id, IDbTransaction atom = null)
+        {
+            _db.GetConnection()
+               .Execute(@"DELETE FROM dbo.Tiendas
+                          WHERE Id = @Id;", new { Id = id }, atom);
         }
     }
 }

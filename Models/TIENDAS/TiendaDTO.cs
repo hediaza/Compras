@@ -14,11 +14,11 @@ namespace Models.TIENDAS
         public int TipoId { get; set; }
 
         [Required]
-        [Display(Name = "Hora de pertura")]
-        public int HoraAperturaId { get; set; }
+        [Display(Name = "Hora de apertura")]
+        public int HorarioAperturaId { get; set; }
 
         [Required]
         [Display(Name = "Hora de cierre")]
-        public int HoraCierreId { get; set; }
+        public int HorarioCierreId { get; set; }
     }
 }

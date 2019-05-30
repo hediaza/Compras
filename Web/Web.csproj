@@ -215,6 +215,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\TIENDAS\Scripts\Tienda\Index.js" />
+    <Content Include="Areas\TIENDAS\Scripts\Tienda\Editar.js" />
     <Content Include="Areas\TIENDAS\Scripts\Tienda\Registrar.js" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
@@ -736,6 +737,7 @@
     <Content Include="Areas\TIENDAS\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\TIENDAS\Views\Tienda\Index.cshtml" />
     <Content Include="Areas\TIENDAS\Views\Tienda\Registrar.cshtml" />
+    <Content Include="Areas\TIENDAS\Views\Tienda\Editar.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

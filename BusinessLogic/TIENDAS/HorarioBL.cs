@@ -1,30 +1,32 @@
 ﻿using Common.Utils;
-using Models.GLOBAL;
 using Models.TIENDAS;
 using Repository.TIENDAS;
 using SqlServerDB;
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BusinessLogic.TIENDAS
 {
-    public class TipoTiendaBL: BaseBL
+    public class HorarioBL : BaseBL
     {
         #region INIT
-        private TipoTiendaRepository _repository;
+        private HorarioRepository _repository;
 
-        public TipoTiendaBL(IDbConnector db)
+        public HorarioBL(IDbConnector db)
         {
             _db = db;
-            _repository = new TipoTiendaRepository(_db);
+            _repository = new HorarioRepository(_db);
         }
         #endregion
 
-        public Result<IEnumerable<TipoTiendaDTO>> ListarDropDown()
+        public Result<IEnumerable<HorarioDTO>> ListarDropDown()
         {
             // Inicializaciones
-            var result = new Result<IEnumerable<TipoTiendaDTO>>();
-            IEnumerable<TipoTiendaDTO> list;
+            var result = new Result<IEnumerable<HorarioDTO>>();
+            IEnumerable<HorarioDTO> list;
 
             // Acceso al repositorio
             try
@@ -43,6 +45,5 @@ namespace BusinessLogic.TIENDAS
             result.Data = list;
             return result;
         }
-
     }
 }
