@@ -19,6 +19,7 @@ namespace BusinessLogic.TIENDAS
         }
         #endregion
 
+        #region CREATE
         public Result<int> Registrar(TiendaDTO tiendaDTO)
         {            
             // Inicializaciones
@@ -41,6 +42,7 @@ namespace BusinessLogic.TIENDAS
             result.Message = "La tienda se registro satisfactoriamente.";
             return result;
         }
+        #endregion
 
         public Result<IEnumerable<TiendaGridDTO>> ListarGrid()
         {
@@ -111,6 +113,7 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
+        #region UPDATE
         public Result Editar(TiendaDTO tiendaDTO)
         {
             // Inicializaciones
@@ -133,7 +136,10 @@ namespace BusinessLogic.TIENDAS
             result.Message = "La tienda se actualizó satisfactoriamente.";
             return result;
         }
+        #endregion
 
+
+        #region DELETE
         public Result Eliminar(int id)
         {
             // Inicializaciones
@@ -156,5 +162,6 @@ namespace BusinessLogic.TIENDAS
             result.Message = "La tienda se eliminó satisfactoriamente.";
             return result;
         }
+        #endregion
     }
 }

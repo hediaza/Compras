@@ -73,7 +73,53 @@ namespace BusinessLogic.INVENTARIOS
         }
         #endregion
 
+        #region UPDATE
+        public Result<ProductoDTO> Obtener(int id)
+        {
+            // Inicializaciones
+            var result = new Result<ProductoDTO>();
 
+            // Registra entidad
+            try
+            {
+                result.Data = _repository.Obtener(id);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "Trasacción realizada satisfactoriamente";
+            return result;
+        }
+
+        public Result Editar(ProductoDTO procutoDTO)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Editar entidad
+            try
+            {
+                _repository.Editar(procutoDTO);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "La tienda se actualizó satisfactoriamente.";
+            return result;
+        }
+        #endregion
 
 
 
