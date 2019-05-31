@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 
 namespace Repository.TIENDAS
 {
-    public interface ITipoHorarioRepository
+    public interface IHorarioRepository
     {
         IEnumerable<HorarioDTO> ListarDropDown();
     }
 
-    public class HorarioRepository : BaseRepository, ITipoHorarioRepository
+    public class HorarioRepository : BaseRepository, IHorarioRepository
     {
         #region INIT
         public HorarioRepository(IDbConnector db)

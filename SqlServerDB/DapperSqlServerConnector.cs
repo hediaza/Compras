@@ -10,14 +10,14 @@ namespace SqlServerDB
         IDbConnection GetConnection();
     }
 
-    public class DapperConnector: IDbConnector
+    public class DapperSqlServerConnector: IDbConnector
     {
         private IDbConnection connection;
 
-        public DapperConnector() : this("SqlServerConnection") {
+        public DapperSqlServerConnector() : this("SqlServerConnection") {
         }
 
-        public DapperConnector(string connectionStringName) {
+        public DapperSqlServerConnector(string connectionStringName) {
             // Obtiene parametros de conexion
             var connectionString = ConfigurationManager.ConnectionStrings[connectionStringName].ToString();
             connection = new SqlConnection(connectionString);

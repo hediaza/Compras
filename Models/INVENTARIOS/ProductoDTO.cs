@@ -19,6 +19,7 @@ namespace Models.INVENTARIOS
         public int Valor { get; set; }
 
         [Required]
+        [Range(0, 100)]
         [Display(Name = "Descuento")]
         public int Descuento { get; set; }
 

@@ -10,12 +10,13 @@ using System.Threading.Tasks;
 
 namespace Repository.INVENTARIOS
 {
-    public interface IInventariosRepository
+    public interface IProductoRepository
     {
-
+        IEnumerable<ProductoGridDTO> ListarGrid();
+        int Registrar(ProductoDTO productoDTO, IDbTransaction atom = null);
     }
 
-    public class ProductoRepository : BaseRepository, IInventariosRepository
+    public class ProductoRepository : BaseRepository, IProductoRepository
     {
 
         #region INIT
@@ -47,18 +48,18 @@ namespace Repository.INVENTARIOS
         {
             int id = _db.GetConnection()
                         .QuerySingle<int>(@"INSERT INTO dbo.Productos (Nombre, 
-                                                                              Cantidad, 
-                                                                              Descuento, 
-                                                                              TiendaId, 
-                                                                              Valor, 
-                                                                              Codigo) 
-                                                                        OUTPUT Inserted.ID
-                                                                        VALUES( @Nombre, 
-                                                                                @Cantidad, 
-                                                                                @Descuento,
-                                                                                @TiendaId,
-                                                                                @Valor
-                                                                                @Codigo);", productoDTO, atom);
+                                                                        Cantidad, 
+                                                                        Descuento, 
+                                                                        TiendaId, 
+                                                                        Valor, 
+                                                                        Codigo) 
+                                                                OUTPUT Inserted.ID
+                                                                VALUES( @Nombre, 
+                                                                        @Cantidad, 
+                                                                        @Descuento,
+                                                                        @TiendaId,
+                                                                        @Valor,
+                                                                        @Codigo);", productoDTO, atom);
             return id;
 
         }

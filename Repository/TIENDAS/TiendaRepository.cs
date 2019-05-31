@@ -13,6 +13,10 @@ namespace Repository.TIENDAS
     public interface ITiendasRepository
     {
         int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom);
+        IEnumerable<TiendaGridDTO> ListarGrid();
+        TiendaDTO Obtener(int id);
+        void Editar(TiendaDTO tiendaDTO, IDbTransaction atom = null);
+        void Eliminar(int id, IDbTransaction atom = null);
     }
 
     public class TiendaRepository : BaseRepository, ITiendasRepository
@@ -49,6 +53,16 @@ namespace Repository.TIENDAS
 	                                                INNER JOIN dbo.TipoTienda t1 ON ( t.TipoId = t1.Id  )  
 	                                                INNER JOIN dbo.Horarios h ON ( t.HorarioAperturaId = h.Id  )  
 	                                                INNER JOIN dbo.Horarios h1 ON ( t.HorarioCierreId = h1.Id  );");
+
+            return list;
+        }
+
+        public IEnumerable<TiendaDTO> ListarDropDown()
+        {
+            var list = _db.GetConnection()
+                          .Query<TiendaDTO>(@"SELECT t.Id, 
+                                                     t.Nombre
+                                             FROM dbo.Tiendas t;");
 
             return list;
         }
