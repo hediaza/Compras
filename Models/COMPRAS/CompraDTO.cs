@@ -27,6 +27,7 @@ namespace Models.COMPRAS
 
         public IEnumerable<ProductosCompraGridDTO> ProductosCompra { get; set; }
 
+        [Display(Name = "Tienda actual")]
         public int TiendaId { get; set; }
     }
 }
