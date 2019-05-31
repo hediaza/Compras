@@ -95,11 +95,13 @@ namespace Repository.TIENDAS
         }
         #endregion
 
+        #region DELETE
         public void Eliminar(int id, IDbTransaction atom = null)
         {
             _db.GetConnection()
                .Execute(@"DELETE FROM dbo.Tiendas
                           WHERE Id = @Id;", new { Id = id }, atom);
         }
+        #endregion
     }
 }

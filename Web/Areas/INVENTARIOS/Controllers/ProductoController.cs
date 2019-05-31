@@ -143,5 +143,37 @@ namespace Web.Areas.INVENTARIOS.Controllers
         }
 
         #endregion
+
+        #region DELETE
+        [HttpPost]
+        public JsonResult Eliminar(int id)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var eliminar = _bl.Eliminar(id);
+            if (!eliminar.Success)
+            {
+                result.Success = false;
+                result.Message = eliminar.Message;
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = eliminar.Message;
+
+            return Json(result);
+        }
+        #endregion
     }
 }

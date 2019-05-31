@@ -121,6 +121,30 @@ namespace BusinessLogic.INVENTARIOS
         }
         #endregion
 
+        #region DELETE
+        public Result Eliminar(int id)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Eliminar entidad
+            try
+            {
+                _repository.Eliminar(id);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = "No fue posible eliminar el registro seleccionado.";
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "El producto se eliminó satisfactoriamente.";
+            return result;
+        }
+        #endregion
 
 
     }

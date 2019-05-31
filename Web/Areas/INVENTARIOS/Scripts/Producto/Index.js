@@ -19,7 +19,7 @@
             this.actionTemplate = kendo.template($('#Index #actionTemplate').html());
         },
 
-        eliminarTienda: function (e) {
+        eliminarProducto: function (e) {
             e.preventDefault();
             var grid = $("#Index").find("#grid").data("kendoGrid");
             var dataItem = grid.dataItem($(e.currentTarget).closest("tr"));
@@ -35,7 +35,7 @@
             }, function () {
                 $.ajax({
                     method: "POST",
-                    url: "/TIENDAS/Tienda/Eliminar/" + id
+                    url: "/INVENTARIOS/Producto/Eliminar/" + id
                 })
                 .done(function (result) {
                     if (result.Success) {

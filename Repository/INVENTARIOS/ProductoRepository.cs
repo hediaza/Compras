@@ -99,7 +99,13 @@ namespace Repository.INVENTARIOS
         }
         #endregion
 
-
+        #region DELETE
+        public void Eliminar(int id, IDbTransaction atom = null)
+        {
+            _db.GetConnection()
+               .Execute(@"DELETE FROM dbo.Productos
+                          WHERE Id = @Id;", new { Id = id }, atom);        }
+        #endregion
     }
 }
 

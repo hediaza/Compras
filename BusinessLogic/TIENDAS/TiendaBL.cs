@@ -90,6 +90,7 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
+        #region UPDATE
         public Result<TiendaDTO> Obtener(int id)
         {
             // Inicializaciones
@@ -113,7 +114,7 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
-        #region UPDATE
+
         public Result Editar(TiendaDTO tiendaDTO)
         {
             // Inicializaciones
