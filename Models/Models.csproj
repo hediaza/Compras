@@ -83,6 +83,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FACTURAS\OrdenesCompraDTO.cs" />
+    <Compile Include="FACTURAS\ClienteDTO.cs" />
+    <Compile Include="FACTURAS\FacturaGridDTO.cs" />
+    <Compile Include="FACTURAS\FacturaDTO.cs" />
     <Compile Include="COMPRAS\ClienteDTO.cs" />
     <Compile Include="COMPRAS\CompraGridDTO.cs" />
     <Compile Include="COMPRAS\CompraDTO.cs" />
@@ -108,7 +112,9 @@
     <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="GLOBAL\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

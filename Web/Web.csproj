@@ -199,6 +199,7 @@
     <Compile Include="Areas\COMPRAS\COMPRASAreaRegistration.cs" />
     <Compile Include="Areas\COMPRAS\Controllers\ClienteController.cs" />
     <Compile Include="Areas\COMPRAS\Controllers\CompraController.cs" />
+    <Compile Include="Areas\FACTURACION\Controllers\FacturaController.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\Controllers\ProductoController.cs" />
     <Compile Include="Areas\INVENTARIOS\INVENTARIOSAreaRegistration.cs" />
@@ -217,9 +218,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Areas\COMPRAS\Scripts\Compra\Index.js" />
-    <Content Include="Areas\COMPRAS\Scripts\Compra\Detalle.js" />
-    <Content Include="Areas\COMPRAS\Scripts\Compra\Registrar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Editar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Index.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Registrar.js" />
@@ -754,6 +752,8 @@
     <Content Include="Areas\COMPRAS\Views\_ViewStart.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Index.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Registrar.cshtml" />
+    <Content Include="Areas\FACTURACION\Views\Factura\Registrar.cshtml" />
+    <Content Include="Areas\FACTURACION\Views\Factura\Index.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Editar.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Index.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Registrar.cshtml" />
