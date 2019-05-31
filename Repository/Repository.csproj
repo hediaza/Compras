@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BaseBL.cs" />
+    <Compile Include="BaseRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TIENDAS\HorarioRepository.cs" />
     <Compile Include="TIENDAS\TipoTiendaRepository.cs" />

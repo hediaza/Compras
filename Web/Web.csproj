@@ -738,6 +738,7 @@
     <Content Include="Areas\TIENDAS\Views\Tienda\Index.cshtml" />
     <Content Include="Areas\TIENDAS\Views\Tienda\Registrar.cshtml" />
     <Content Include="Areas\TIENDAS\Views\Tienda\Editar.cshtml" />
+    <Content Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2891,6 +2892,10 @@
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{be4f2820-065e-4613-a170-97d723e7db26}</Project>
       <Name>Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Repository\Repository.csproj">
+      <Project>{2bbeb9c6-d2cd-47a7-b00b-4d258959b9af}</Project>
+      <Name>Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\SqlServerDB\SqlServerDB.csproj">
       <Project>{84495211-7827-445B-8FEC-DD2581C075E2}</Project>

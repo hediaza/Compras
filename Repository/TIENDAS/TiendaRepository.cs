@@ -13,6 +13,10 @@ namespace Repository.TIENDAS
     public interface ITiendasRepository
     {
         int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom);
+        IEnumerable<TiendaGridDTO> ListarGrid();
+        TiendaDTO Obtener(int id);
+        void Editar(TiendaDTO tiendaDTO, IDbTransaction atom = null);
+        void Eliminar(int id, IDbTransaction atom = null);
     }
 
     public class TiendaRepository : BaseRepository, ITiendasRepository
