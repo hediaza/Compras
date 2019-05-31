@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using Models.FACTURAS;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
-using SqlServerDB;
 using Dapper;
+using DbConnector;
 
 namespace Repository.FACTURAS
 {

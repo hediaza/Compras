@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models.FACTURAS;
 using Repository.FACTURAS;
-using SqlServerDB;
+using DbConnector;
 using Common.Utils;
 
 namespace BusinessLogic.FACTURAS

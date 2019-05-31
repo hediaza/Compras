@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using BusinessLogic.FACTURAS;
 using Models.FACTURAS;
-using SqlServerDB;
+using DbConnector;
 using Kendo.Mvc.UI;
 using Kendo.Mvc.Extensions;
 using Common.Utils;
