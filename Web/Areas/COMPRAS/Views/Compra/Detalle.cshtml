@@ -1,6 +1,6 @@
 ﻿@using Models.COMPRAS;
 
-@model CompraDTO
+@model OrdenCompraDetalleDTO
 
 @{
     var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
@@ -10,18 +10,18 @@
     <!-- Script de la vista modal -->
     <script src="@Url.Content(Utils.GetJsFilePath(VirtualPath))"></script>
 
-    @using (Ajax.BeginForm("Registrar", "Compra", new { area = "COMPRAS" }, new AjaxOptions { HttpMethod = "POST", OnSuccess = viewName + ".onSuccess", OnBegin = viewName + ".onBegin" }))
-    {
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title">Registrar compra</h3>
+            <h3 class="modal-title">Detalle de la compra</h3>
         </div>
 
         <div class="modal-body">
             <div class="alert alert-info">
                 <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
-                Ingrese los datos de la compra que desea registrar.
+                A continuación se esta visualizando el detalle de la compra realizada.
             </div>
+
+            @Html.HiddenFor(m => m.Id)
 
             <div class="row">
                 <div class="form-group col-md-12">
@@ -32,6 +32,7 @@
                     .HtmlAttributes(new { style = "width: 100%;" })
                     .OptionLabel("Seleccione...")
                     .Filter("contains")
+                    .Enable(false)
                     .DataSource(source =>
                     {
                         source.Custom().Type("aspnetmvc-ajax")
@@ -49,60 +50,27 @@
                 <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.ClienteId)
                     @(Html.Kendo().DropDownListFor(m => m.ClienteId)
-                .DataTextField("Nombre")
-                .DataValueField("Id")
-                .HtmlAttributes(new { style = "width: 100%;" })
-                .OptionLabel("Seleccione...")
-                .Filter("contains")
-                .DataSource(source =>
-                {
-                    source.Custom().Type("aspnetmvc-ajax")
-                        .Transport(t =>
-                        {
-                            t.Read(r => r.Action("ListarDropDown", "Cliente", new { area = "COMPRAS" }));
-                        })
-                        .ServerFiltering(false)
-                        .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                        .Events(e => e.Error("Utils.onModelStateError"));
-                }))
+                    .DataTextField("Nombre")
+                    .DataValueField("Id")
+                    .HtmlAttributes(new { style = "width: 100%;" })
+                    .OptionLabel("Seleccione...")
+                    .Filter("contains")
+                    .Enable(false)
+                    .DataSource(source =>
+                    {
+                        source.Custom().Type("aspnetmvc-ajax")
+                            .Transport(t =>
+                            {
+                                t.Read(r => r.Action("ListarDropDown", "Cliente", new { area = "COMPRAS" }));
+                            })
+                            .ServerFiltering(false)
+                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                            .Events(e => e.Error("Utils.onModelStateError"));
+                    }))
                     @Html.ValidationMessageFor(m => m.ClienteId)
                 </div>
 
                 <div class="form-group col-md-12">
-                    @Html.LabelFor(m => m.ProductoId)
-                    @(Html.Kendo().DropDownListFor(m => m.ProductoId)
-                .DataTextField("NombreFiltro")
-                .DataValueField("Id")
-                .HtmlAttributes(new { style = "width: 100%;" })
-                .OptionLabel("Seleccione...")
-                .Filter("contains")
-                .DataSource(source =>
-                {
-                    source.Custom().Type("aspnetmvc-ajax")
-                        .Transport(t =>
-                        {
-                            t.Read(r => r.Action("ListarDropDown", "Producto", new { area = "INVENTARIOS" }));
-                        })
-                        .ServerFiltering(false)
-                        .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                        .Events(e => e.Error("Utils.onModelStateError"));
-                }))
-                    @Html.ValidationMessageFor(m => m.ProductoId)
-                </div>
-
-                <div class="form-group col-md-12">
-                    @Html.LabelFor(m => m.Cantidad)
-                    @(Html.Kendo().NumericTextBoxFor(m => m.Cantidad)
-                      .Format("#").Min(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
-                    @Html.ValidationMessageFor(m => m.Cantidad)
-                </div>
-
-                <div class="form-group col-md-12">
-                    <button type="button" class="btn btn-warning" onclick="Registrar.onAgregarProducto()">Agregar</button>
-                </div>
-
-                <div class="form-group col-md-12">
-
                     @(Html.Kendo().Grid<ProductosCompraGridDTO>()
                     .Name("productosCompraGrid")
                     .Columns(columns =>
@@ -128,14 +96,8 @@
                                .Sortable(false)
                                .Format("{0:c}");
 
-                        columns.Bound(m => m.Id)
-                               .Title("Acciones")
-                               .ClientTemplate(@"
-                                <div class='text-center'>
-                                    <a class='btn btn-danger' onclick='Registrar.removeGridRow(event)'>Eliminar</a>
-                                </div>");
-
                     })
+                    .BindTo(Model.ProductosCompra)
                     .Pageable(p => p.Enabled(false))
                     .Scrollable(s => s.Height("150px"))
                     .DataSource(dataSource => dataSource
@@ -147,10 +109,15 @@
                 </div>
 
                 <div class="form-group col-md-12">
+                    @Html.LabelFor(m => m.Fecha)
+                    @(Html.Kendo().DatePickerFor(m => m.Fecha).Enable(false)
+                                  .HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
+                </div>
+
+                <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.Total)
                     @(Html.Kendo().NumericTextBoxFor(m => m.Total).Enable(false)
-                      .Format("\\$ #").Min(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
-                    @Html.ValidationMessageFor(m => m.Cantidad)
+                  .Format("\\$ #").Min(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
                 </div>
 
 
@@ -160,9 +127,7 @@
 
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <input type="submit" class="btn btn-primary" value="Ordenar compra">
         </div>
-    }
 
     <!-- Inicialización script de vista -->
     <script>

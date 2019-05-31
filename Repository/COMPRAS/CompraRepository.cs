@@ -15,7 +15,7 @@ namespace Repository.COMPRAS
     {
         int Registrar(CompraDTO tiendaDTO, IDbTransaction atom);
         IEnumerable<CompraGridDTO> ListarGrid();
-        CompraDTO Obtener(int id);
+        OrdenCompraDetalleDTO Obtener(int id);
     }
 
     public class CompraRepository : BaseRepository, ICompraRepository
@@ -92,12 +92,20 @@ namespace Repository.COMPRAS
             return list;
         }
 
-        public CompraDTO Obtener(int id)
+        public OrdenCompraDetalleDTO Obtener(int id)
         {
-            var compraDTO = _db.GetConnection()
-                               .QuerySingle<CompraDTO>(@"???", new { Id = id });
+            var ordenCompraDetalleDTO = _db.GetConnection()
+                                       .QuerySingle<OrdenCompraDetalleDTO>(@"SELECT o.Id, o.ClienteId, o.Total, o.Estado, o.TiendaId, o.Fecha
+                                                                            FROM dbo.OrdenesCompras o
+                                                                            WHERE o.Id = @Id;", new { Id = id });
 
-            return compraDTO;
+            ordenCompraDetalleDTO.ProductosCompra = _db.GetConnection()
+                                 .Query<ProductosCompraGridDTO>(@"SELECT c.Id, c.Cantidad, c.Total as ValorTotal, p.Nombre, p.Valor as ValorUnitario
+                                                                FROM dbo.Compras c 
+	                                                                INNER JOIN dbo.Productos p ON ( c.ProductoId = p.Id  )  
+                                                                WHERE c.OrdenesCompraId = @Id;", new { Id = id });
+
+            return ordenCompraDetalleDTO;
         }
         #endregion
 

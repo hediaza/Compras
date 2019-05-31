@@ -86,6 +86,7 @@
     <Compile Include="COMPRAS\ClienteDTO.cs" />
     <Compile Include="COMPRAS\CompraGridDTO.cs" />
     <Compile Include="COMPRAS\CompraDTO.cs" />
+    <Compile Include="COMPRAS\OrdenCompraDetalleDTO.cs" />
     <Compile Include="COMPRAS\OrdenCompraDTO.cs" />
     <Compile Include="COMPRAS\ProductosCompraGridDTO.cs" />
     <Compile Include="INVENTARIOS\ProductoDTO.cs" />

@@ -74,10 +74,10 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
-        public Result<CompraDTO> Obtener(int id)
+        public Result<OrdenCompraDetalleDTO> Obtener(int id)
         {
             // Inicializaciones
-            var result = new Result<CompraDTO>();
+            var result = new Result<OrdenCompraDetalleDTO>();
 
             // Acceso al repositorio
             try

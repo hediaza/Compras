@@ -218,6 +218,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\COMPRAS\Scripts\Compra\Index.js" />
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Detalle.js" />
     <Content Include="Areas\COMPRAS\Scripts\Compra\Registrar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Editar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Index.js" />
@@ -755,6 +756,7 @@
     <Content Include="Areas\INVENTARIOS\Views\Producto\Editar.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Index.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Registrar.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Detalle.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
