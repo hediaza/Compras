@@ -1,6 +1,6 @@
 ﻿using Dapper;
 using Models.TIENDAS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -44,6 +44,7 @@ namespace Repository.TIENDAS
         }
         #endregion
 
+        #region READ
         public IEnumerable<TiendaGridDTO> ListarGrid() {
             var list = _db.GetConnection()
                           .Query<TiendaGridDTO>(@"SELECT t.Id, 
@@ -81,6 +82,7 @@ namespace Repository.TIENDAS
 
             return tiendaDTO;
         }
+        #endregion
 
         #region UPDATE
         public void Editar(TiendaDTO tiendaDTO, IDbTransaction atom = null)

@@ -1,7 +1,7 @@
 ﻿using Common.Utils;
 using Models.TIENDAS;
 using Repository.TIENDAS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;

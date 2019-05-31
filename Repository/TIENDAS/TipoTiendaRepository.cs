@@ -1,7 +1,7 @@
 ﻿using Dapper;
 using Models.GLOBAL;
 using Models.TIENDAS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Data;

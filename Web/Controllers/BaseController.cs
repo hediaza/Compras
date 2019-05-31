@@ -1,4 +1,4 @@
-﻿using SqlServerDB;
+﻿using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +11,10 @@ namespace Web.Controllers
     {
         protected IDbConnector _db;
 
+        /// <summary>
+        /// Cierra las conexion a base de datos
+        /// </summary>
+        /// <param name="disposing"></param>
         protected override void Dispose(bool disposing)
         {
             if (disposing)

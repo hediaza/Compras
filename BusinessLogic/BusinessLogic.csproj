@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseBL.cs" />
+    <Compile Include="COMPRAS\CompraBL.cs" />
     <Compile Include="INVENTARIOS\ProductoBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TIENDAS\HorarioBL.cs" />
@@ -98,6 +99,10 @@
     <Compile Include="TIENDAS\TiendaBL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DbConector\DbConector.csproj">
+      <Project>{84495211-7827-445b-8fec-dd2581c075e2}</Project>
+      <Name>DbConector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{be4f2820-065e-4613-a170-97d723e7db26}</Project>
       <Name>Models</Name>
@@ -105,10 +110,6 @@
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{2bbeb9c6-d2cd-47a7-b00b-4d258959b9af}</Project>
       <Name>Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SqlServerDB\SqlServerDB.csproj">
-      <Project>{84495211-7827-445b-8fec-dd2581c075e2}</Project>
-      <Name>SqlServerDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{f22c6b9e-912e-4123-9cc5-80818f723eed}</Project>

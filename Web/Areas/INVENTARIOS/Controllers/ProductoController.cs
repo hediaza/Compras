@@ -3,7 +3,7 @@ using Common.Utils;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Models.INVENTARIOS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;

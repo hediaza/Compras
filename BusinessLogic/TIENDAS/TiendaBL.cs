@@ -1,7 +1,7 @@
 ﻿using Common.Utils;
 using Models.TIENDAS;
 using Repository.TIENDAS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 
@@ -25,7 +25,7 @@ namespace BusinessLogic.TIENDAS
             // Inicializaciones
             var result = new Result<int>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {                
                 result.Data = _repository.Registrar(tiendaDTO);
@@ -44,12 +44,13 @@ namespace BusinessLogic.TIENDAS
         }
         #endregion
 
+        #region READ
         public Result<IEnumerable<TiendaGridDTO>> ListarGrid()
         {
             // Inicializaciones
             var result = new Result<IEnumerable<TiendaGridDTO>>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.ListarGrid();
@@ -72,7 +73,7 @@ namespace BusinessLogic.TIENDAS
             // Inicializaciones
             var result = new Result<IEnumerable<TiendaDTO>>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.ListarDropDown();
@@ -90,13 +91,12 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
-        #region UPDATE
         public Result<TiendaDTO> Obtener(int id)
         {
             // Inicializaciones
             var result = new Result<TiendaDTO>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.Obtener(id);
@@ -114,6 +114,9 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
+        #endregion
+
+        #region UPDATE
 
         public Result Editar(TiendaDTO tiendaDTO)
         {
@@ -138,7 +141,6 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
         #endregion
-
 
         #region DELETE
         public Result Eliminar(int id)

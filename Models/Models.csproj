@@ -83,6 +83,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="COMPRAS\CompraGridDTO.cs" />
+    <Compile Include="COMPRAS\CompraDTO.cs" />
     <Compile Include="GLOBAL\SelectListItem2.cs" />
     <Compile Include="INVENTARIOS\ProductoDTO.cs" />
     <Compile Include="INVENTARIOS\ProductoGridDTO.cs" />
