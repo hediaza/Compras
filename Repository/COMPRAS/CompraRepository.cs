@@ -30,8 +30,49 @@ namespace Repository.COMPRAS
         #region CREATE
         public int Registrar(CompraDTO compraDTO, IDbTransaction atom = null)
         {
-            int id = _db.GetConnection()
-                        .QuerySingle<int>(@"???", compraDTO, atom);
+
+            // Registro de orden de compra
+            var ordenCompraDTO = new OrdenCompraDTO
+            {
+                ClienteId = compraDTO.ClienteId,
+                Total = compraDTO.Total,
+                TiendaId = compraDTO.TiendaId
+            };
+
+            var id = _db.GetConnection()
+               .QuerySingle<int>(@"INSERT INTO dbo.OrdenesCompras (
+                                     ClienteId, 
+                                     Total, 
+                                     TiendaId) 
+                                   OUTPUT Inserted.ID
+                                   VALUES ( 
+                                     @ClienteId, 
+                                     @Total, 
+                                     @TiendaId);", ordenCompraDTO, atom);
+
+            // Registro de ordenes asociadas a la compra
+            var compras = compraDTO.ProductosCompra.Select(item => new CompraDTO
+            {
+                ProductoId = item.Id,
+                Cantidad = item.Cantidad,
+                ClienteId = compraDTO.ClienteId,
+                Total = item.ValorTotal,
+                OrdenesCompraId = id
+            });
+
+            _db.GetConnection()
+               .Execute(@"INSERT INTO dbo.Compras
+	                                    (ProductoId, 
+	                                     Cantidad, 
+                                         ClienteId, 
+                                         Total, 
+                                         OrdenesCompraId)
+                                    VALUES (@ProductoId, 
+	                                        @Cantidad, 	                                        
+                                            @ClienteId, 
+                                            @Total, 
+                                            @OrdenesCompraId);", compras, atom);
+
 
             return id;
         }
@@ -41,7 +82,12 @@ namespace Repository.COMPRAS
         public IEnumerable<CompraGridDTO> ListarGrid()
         {
             var list = _db.GetConnection()
-                          .Query<CompraGridDTO>(@"???");
+                          .Query<CompraGridDTO>(@"SELECT o.Id, 
+                                                         o.Total, 
+                                                         o.Fecha, 
+                                                         c.Nombre as Cliente
+                                                  FROM dbo.OrdenesCompras o 
+	                                                  INNER JOIN dbo.Clientes c ON ( o.ClienteId = c.Id );");
 
             return list;
         }

@@ -45,6 +45,29 @@ namespace BusinessLogic.INVENTARIOS
             result.Message = "Transacción realizada satisfactoriamente.";
             return result;
         }
+
+        public Result<IEnumerable<ProductoDropDownDTO>> ListarDropDown()
+        {
+            // Inicializaciones
+            var result = new Result<IEnumerable<ProductoDropDownDTO>>();
+
+            // Acceso al repositorio
+            try
+            {
+                result.Data = _repository.ListarDropDown();
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "Transacción realizada satisfactoriamente.";
+            return result;
+        }
         #endregion
 
 

@@ -1,5 +1,4 @@
 ﻿using Common.Utils;
-using Models.GLOBAL;
 using Models.TIENDAS;
 using Repository.TIENDAS;
 using DbConnector;

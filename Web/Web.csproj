@@ -197,6 +197,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\COMPRAS\COMPRASAreaRegistration.cs" />
+    <Compile Include="Areas\COMPRAS\Controllers\ClienteController.cs" />
     <Compile Include="Areas\COMPRAS\Controllers\CompraController.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\Controllers\ProductoController.cs" />
@@ -216,6 +217,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Index.js" />
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Registrar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Editar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Index.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Registrar.js" />
@@ -750,6 +753,8 @@
     <Content Include="Areas\INVENTARIOS\Views\Producto\Index.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Registrar.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Editar.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Index.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Registrar.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2881,7 +2886,6 @@
     <Folder Include="App_Data\Storage\OPER\" />
     <Folder Include="App_Data\Storage\TEMP\" />
     <Folder Include="Areas\COMPRAS\Models\" />
-    <Folder Include="Areas\COMPRAS\Views\Compra\" />
     <Folder Include="Areas\COMPRAS\Views\Shared\" />
     <Folder Include="Areas\FACTURACION\Controllers\" />
     <Folder Include="Areas\FACTURACION\Models\" />
@@ -2890,7 +2894,6 @@
     <Folder Include="Areas\INVENTARIOS\Views\Shared\" />
     <Folder Include="Areas\TIENDAS\Models\" />
     <Folder Include="Areas\TIENDAS\Views\Horarios\" />
-    <Folder Include="Areas\TIENDAS\Views\Tiendas\" />
     <Folder Include="Areas\TIENDAS\Views\TipoTienda\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

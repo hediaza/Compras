@@ -1,0 +1,71 @@
+﻿@using Models.COMPRAS;
+
+@{
+    ViewBag.Title = "Compras";
+    var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
+}
+
+<div id="@viewName">
+    <!-- Scripts -->
+    <script src="@Url.Content(Utils.GetJsFilePath(VirtualPath))"></script>
+    <!-- Plantilla que se utilizará en la columna de acciones de la grilla -->
+    <script id="actionTemplate" type="text/x-kendo-template">
+        <div class='text-center'>
+            <a class='btn btn-primary' data-modal="" href='@Url.Action("Detalle", "Compra", new { area = "COMPRAS" })/#=data.Id#'>Ver Detalle</a>
+        </div>
+    </script>
+
+    <!-- Encabezado -->
+    <div class="row wrapper border-bottom white-bg page-heading">
+        <div class="col-sm-4">
+            <h2>@ViewBag.Title</h2>
+            <ol class="breadcrumb"><li>Lista de compras registradas</li></ol>
+        </div>
+        <div class="col-sm-8">
+            <div class="title-action">
+                <a class='btn btn-primary' data-modal="" href="@Url.Action("Registrar", "Compra", new { area = "COMPRAS" })">Registrar</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenidos -->
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content">
+                @(Html.Kendo().Grid<CompraGridDTO>()
+                        .Name("grid")
+                        .Columns(columns =>
+                        {
+                            columns.Bound(p => p.Id).Width(80).Filterable(f => f.Enabled(false));
+                            columns.Bound(p => p.Cliente);
+                            columns.Bound(p => p.Total);
+                            columns.Bound(p => p.Fecha).Sortable(true).Format("{0:dd/MM/yyyy}");                            
+                            columns.Bound(c => c.Id).ClientTemplate("#=Index.actionTemplate(data)#").Title("Acciones").Width(230).Filterable(false);
+                        })
+                        .Selectable()
+                        .Filterable(f => f.Mode(GridFilterMode.Row))
+                        .Pageable(p => p.Refresh(true))
+                        .Sortable(s => s.Enabled(false))
+                        .Scrollable()
+                        .HtmlAttributes(new { style = "height:550px;" })
+                        .Events(e => e.DataBound("App.handleModal"))
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .ServerOperation(false)
+                            .Events(e => e.Error("Utils.onModelStateError"))
+                            .PageSize(10)
+                            .Read(read => read.Action("ListarGrid", "Compra", "COMPRAS"))
+                            .ServerOperation(false)
+                        ))
+            </div>
+        </div>
+    </div>
+
+    <!-- Inicializadores -->
+    <script>
+        $(function () {
+            @(viewName).init();
+        });
+
+    </script>
+</div>

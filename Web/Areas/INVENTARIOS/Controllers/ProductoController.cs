@@ -56,6 +56,24 @@ namespace Web.Areas.INVENTARIOS.Controllers
             };
             return Json(ds);
         }
+
+        public JsonResult ListarDropDown([DataSourceRequest]DataSourceRequest request)
+        {
+            var listarDropDown = _bl.ListarDropDown();
+            if (!listarDropDown.Success)
+            {
+                ModelState.AddModelError("Error", listarDropDown.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+
+            //Salida Success 
+            var ds = new DataSourceResult()
+            {
+                Data = listarDropDown.Data,
+                Total = listarDropDown.Data.Count()
+            };
+            return Json(ds);
+        }
         #endregion
 
         #region CREATE

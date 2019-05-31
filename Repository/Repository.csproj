@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseRepository.cs" />
+    <Compile Include="COMPRAS\ClienteRepository.cs" />
     <Compile Include="COMPRAS\CompraRepository.cs" />
     <Compile Include="INVENTARIOS\ProductoRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

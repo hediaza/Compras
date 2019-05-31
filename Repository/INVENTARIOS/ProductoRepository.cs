@@ -41,6 +41,19 @@ namespace Repository.INVENTARIOS
 	                                                        INNER JOIN dbo.Tiendas t ON ( p.TiendaId = t.Id  );");
             return list;
         }
+
+        public IEnumerable<ProductoDropDownDTO> ListarDropDown()
+        {
+            var list = _db.GetConnection()
+                          .Query<ProductoDropDownDTO>(@"SELECT  p.Id, 
+                                                        p.Nombre,
+                                                        p.Nombre + ' ($' + CAST(p.Valor as nvarchar(max)) + ')' as NombreFiltro,
+                                                        p.Cantidad,
+                                                        p.Valor
+                                                    FROM dbo.Productos p;");
+            return list;
+        }
+
         #endregion
 
         #region CREATE

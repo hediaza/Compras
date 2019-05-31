@@ -33,66 +33,66 @@
                 <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.TipoId)
                     @(Html.Kendo().DropDownListFor(m => m.TipoId)
-                    .DataTextField("Nombre")
-                    .DataValueField("Id")
-                    .HtmlAttributes(new { style = "width: 100%;" })
-                    .OptionLabel("Seleccione...")
-                    .Filter("contains")
-                    .DataSource(source =>
-                    {
-                        source.Custom().Type("aspnetmvc-ajax")
-                            .Transport(t =>
-                            {
-                                t.Read(r => r.Action("ListarDropDown", "TipoTienda", new { area = "TIENDAS" }));
-                            })
-                            .ServerFiltering(false)
-                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                            .Events(e => e.Error("Utils.onModelStateError"));
-                    }))
+                                    .DataTextField("Nombre")
+                                    .DataValueField("Id")
+                                    .HtmlAttributes(new { style = "width: 100%;" })
+                                    .OptionLabel("Seleccione...")
+                                    .Filter("contains")
+                                    .DataSource(source =>
+                                    {
+                                        source.Custom().Type("aspnetmvc-ajax")
+                                            .Transport(t =>
+                                            {
+                                                t.Read(r => r.Action("ListarDropDown", "TipoTienda", new { area = "TIENDAS" }));
+                                            })
+                                            .ServerFiltering(false)
+                                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                            .Events(e => e.Error("Utils.onModelStateError"));
+                                    }))
                     @Html.ValidationMessageFor(m => m.TipoId)
                 </div>
 
                 <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.HorarioAperturaId)
                     @(Html.Kendo().DropDownListFor(m => m.HorarioAperturaId)
-                    .DataTextField("Nombre")
-                    .DataValueField("Id")
-                    .HtmlAttributes(new { style = "width: 100%;" })
-                    .OptionLabel("Seleccione...")
-                    .Filter("contains")
-                    .DataSource(source =>
-                    {
-                        source.Custom().Type("aspnetmvc-ajax")
-                            .Transport(t =>
-                            {
-                                t.Read(r => r.Action("ListarDropDown", "Horario", new { area = "TIENDAS" }));
-                            })
-                            .ServerFiltering(false)
-                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                            .Events(e => e.Error("Utils.onModelStateError"));
-                    }))
+                                    .DataTextField("Nombre")
+                                    .DataValueField("Id")
+                                    .HtmlAttributes(new { style = "width: 100%;" })
+                                    .OptionLabel("Seleccione...")
+                                    .Filter("contains")
+                                    .DataSource(source =>
+                                    {
+                                        source.Custom().Type("aspnetmvc-ajax")
+                                            .Transport(t =>
+                                            {
+                                                t.Read(r => r.Action("ListarDropDown", "Horario", new { area = "TIENDAS" }));
+                                            })
+                                            .ServerFiltering(false)
+                                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                            .Events(e => e.Error("Utils.onModelStateError"));
+                                    }))
                     @Html.ValidationMessageFor(m => m.TipoId)
                 </div>
 
                 <div class="form-group col-md-6">
                     @Html.LabelFor(m => m.HorarioCierreId)
                     @(Html.Kendo().DropDownListFor(m => m.HorarioCierreId)
-                    .DataTextField("Nombre")
-                    .DataValueField("Id")
-                    .HtmlAttributes(new { style = "width: 100%;" })
-                    .OptionLabel("Seleccione...")
-                    .Filter("contains")
-                    .DataSource(source =>
-                    {
-                        source.Custom().Type("aspnetmvc-ajax")
-                            .Transport(t =>
-                            {
-                                t.Read(r => r.Action("ListarDropDown", "Horario", new { area = "TIENDAS" }));
-                            })
-                            .ServerFiltering(false)
-                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                            .Events(e => e.Error("Utils.onModelStateError"));
-                    }))
+                                    .DataTextField("Nombre")
+                                    .DataValueField("Id")
+                                    .HtmlAttributes(new { style = "width: 100%;" })
+                                    .OptionLabel("Seleccione...")
+                                    .Filter("contains")
+                                    .DataSource(source =>
+                                    {
+                                        source.Custom().Type("aspnetmvc-ajax")
+                                            .Transport(t =>
+                                            {
+                                                t.Read(r => r.Action("ListarDropDown", "Horario", new { area = "TIENDAS" }));
+                                            })
+                                            .ServerFiltering(false)
+                                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                            .Events(e => e.Error("Utils.onModelStateError"));
+                                    }))
                     @Html.ValidationMessageFor(m => m.TipoId)
                 </div>
             </div>

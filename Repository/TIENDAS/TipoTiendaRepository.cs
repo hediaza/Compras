@@ -1,5 +1,4 @@
 ﻿using Dapper;
-using Models.GLOBAL;
 using Models.TIENDAS;
 using DbConnector;
 using System;

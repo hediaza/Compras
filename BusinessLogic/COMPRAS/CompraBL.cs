@@ -26,20 +26,24 @@ namespace BusinessLogic.TIENDAS
         {            
             // Inicializaciones
             var result = new Result<int>();
+            var atom = _db.GetConnection().BeginTransaction();
 
             // Acceso al repositorio
             try
             {                
-                result.Data = _repository.Registrar(compraDTO);
+
+                result.Data = _repository.Registrar(compraDTO, atom);
             }
             catch (Exception e)
             {
+                atom.Rollback();
                 result.Exception = e;
                 result.Message = e.Message;
                 return result;
             }
 
             // Salida satisfcatoria
+            atom.Commit();
             result.Success = true;
             result.Message = "La tienda se registro satisfactoriamente.";
             return result;
