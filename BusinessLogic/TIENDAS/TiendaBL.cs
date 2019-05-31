@@ -65,6 +65,29 @@ namespace BusinessLogic.TIENDAS
             return result;
         }
 
+        public Result<IEnumerable<TiendaDTO>> ListarDropDown()
+        {
+            // Inicializaciones
+            var result = new Result<IEnumerable<TiendaDTO>>();
+
+            // Registra entidad
+            try
+            {
+                result.Data = _repository.ListarDropDown();
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "Transacción realizada satisfactoriamente.";
+            return result;
+        }
+
         public Result<TiendaDTO> Obtener(int id)
         {
             // Inicializaciones

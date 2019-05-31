@@ -1,6 +1,8 @@
 ﻿using BusinessLogic.INVENTARIOS;
+using Common.Utils;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Models.INVENTARIOS;
 using SqlServerDB;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace Web.Areas.INVENTARIOS.Controllers
 
         public ProductoController()
         {
-            _db = new DapperConnector();
+            _db = new DapperSqlServerConnector();
             _bl = new ProductoBL(_db);
         }
         #endregion
@@ -58,7 +60,40 @@ namespace Web.Areas.INVENTARIOS.Controllers
 
         #region CREATE
         [HttpGet]
-        
+        public ActionResult Registrar()
+        {
+            return PartialView();
+        }
+
+        [HttpPost]
+        public JsonResult Registrar(ProductoDTO productoDTO)
+        {
+            // Inicializaciones
+            var result = new Result<int>();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var registrar = _bl.Registrar(productoDTO);
+            if (!registrar.Success)
+            {
+                result.Message = registrar.Message;
+                result.Success = false;
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = registrar.Message;
+            result.Data = registrar.Data;
+
+            return Json(result);
         }
         #endregion
     }

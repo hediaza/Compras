@@ -57,6 +57,16 @@ namespace Repository.TIENDAS
             return list;
         }
 
+        public IEnumerable<TiendaDTO> ListarDropDown()
+        {
+            var list = _db.GetConnection()
+                          .Query<TiendaDTO>(@"SELECT t.Id, 
+                                                     t.Nombre
+                                             FROM dbo.Tiendas t;");
+
+            return list;
+        }
+
         public TiendaDTO Obtener(int id) {
             var tiendaDTO = _db.GetConnection()
                                .QuerySingle<TiendaDTO>(@"SELECT t.Id, 

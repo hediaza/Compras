@@ -19,7 +19,7 @@ namespace Web.Areas.TIENDAS.Controllers
         private TiendaBL _bl;        
 
         public TiendaController() {
-            _db = new DapperConnector();
+            _db = new DapperSqlServerConnector();
             _bl = new TiendaBL(_db);
         }
         #endregion
@@ -42,7 +42,26 @@ namespace Web.Areas.TIENDAS.Controllers
         public JsonResult ListarGrid([DataSourceRequest]DataSourceRequest request)
         {
 
-            var listarDropDown = _bl.ListarGrid();
+            var listarGrid = _bl.ListarGrid();
+            if (!listarGrid.Success)
+            {
+                ModelState.AddModelError("Error", listarGrid.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+
+            //Salida Success 
+            var ds = new DataSourceResult()
+            {
+                Data = listarGrid.Data,
+                Total = listarGrid.Data.Count()
+            };
+            return Json(ds);
+        }
+
+        public JsonResult ListarDropDown([DataSourceRequest]DataSourceRequest request)
+        {
+
+            var listarDropDown = _bl.ListarDropDown();
             if (!listarDropDown.Success)
             {
                 ModelState.AddModelError("Error", listarDropDown.Message);
@@ -57,7 +76,7 @@ namespace Web.Areas.TIENDAS.Controllers
             };
             return Json(ds);
         }
-        
+
 
         #endregion
 

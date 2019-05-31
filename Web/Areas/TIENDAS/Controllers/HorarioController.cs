@@ -19,7 +19,7 @@ namespace Web.Areas.TIENDAS.Controllers
 
         public HorarioController()
         {
-            _db = new DapperConnector();
+            _db = new DapperSqlServerConnector();
             _bl = new HorarioBL(_db);
         }
         #endregion

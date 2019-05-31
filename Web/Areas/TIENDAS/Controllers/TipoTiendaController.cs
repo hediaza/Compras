@@ -18,11 +18,12 @@ namespace Web.Areas.TIENDAS.Controllers
 
         public TipoTiendaController()
         {
-            _db = new DapperConnector();
+            _db = new DapperSqlServerConnector();
             _bl = new TipoTiendaBL(_db);
         }
         #endregion
 
+        #region READ
         public JsonResult ListarDropDown([DataSourceRequest]DataSourceRequest request)
         {
 
@@ -41,5 +42,6 @@ namespace Web.Areas.TIENDAS.Controllers
             };
             return Json(ds);
         }
+        #endregion
     }
 }
