@@ -40,7 +40,7 @@
                 <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.Descuento)
                     @(Html.Kendo().NumericTextBoxFor(m => m.Descuento)
-                                          .Format("# \\%").Min(0).Max(100).Value(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
+                                          .Format("# \\%").Min(0).Max(100).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
                     @Html.ValidationMessageFor(m => m.Descuento)
                 </div>
 

@@ -1,7 +1,7 @@
 ﻿using Common.Utils;
 using Models.INVENTARIOS;
 using Repository.INVENTARIOS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,10 +28,33 @@ namespace BusinessLogic.INVENTARIOS
             // Inicializaciones
             var result = new Result<IEnumerable<ProductoGridDTO>>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.ListarGrid();
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "Transacción realizada satisfactoriamente.";
+            return result;
+        }
+
+        public Result<IEnumerable<ProductoDropDownDTO>> ListarDropDown()
+        {
+            // Inicializaciones
+            var result = new Result<IEnumerable<ProductoDropDownDTO>>();
+
+            // Acceso al repositorio
+            try
+            {
+                result.Data = _repository.ListarDropDown();
             }
             catch (Exception e)
             {
@@ -54,7 +77,7 @@ namespace BusinessLogic.INVENTARIOS
             // Inicializaciones
             var result = new Result<int>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.Registrar(productoDTO);
@@ -79,7 +102,7 @@ namespace BusinessLogic.INVENTARIOS
             // Inicializaciones
             var result = new Result<ProductoDTO>();
 
-            // Registra entidad
+            // Acceso al repositorio
             try
             {
                 result.Data = _repository.Obtener(id);

@@ -1,4 +1,4 @@
-﻿using SqlServerDB;
+﻿using DbConnector;
 
 namespace Repository
 {

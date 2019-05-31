@@ -197,6 +197,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\COMPRAS\COMPRASAreaRegistration.cs" />
+    <Compile Include="Areas\COMPRAS\Controllers\ClienteController.cs" />
+    <Compile Include="Areas\COMPRAS\Controllers\CompraController.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\Controllers\ProductoController.cs" />
     <Compile Include="Areas\INVENTARIOS\INVENTARIOSAreaRegistration.cs" />
@@ -215,6 +217,9 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Index.js" />
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Detalle.js" />
+    <Content Include="Areas\COMPRAS\Scripts\Compra\Registrar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Editar.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Index.js" />
     <Content Include="Areas\INVENTARIOS\Scripts\Producto\Registrar.js" />
@@ -750,6 +755,9 @@
     <Content Include="Areas\INVENTARIOS\Views\Producto\Index.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Registrar.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Editar.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Index.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Registrar.cshtml" />
+    <Content Include="Areas\COMPRAS\Views\Compra\Detalle.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2880,7 +2888,6 @@
     <Folder Include="App_Data\Storage\ADMIN\" />
     <Folder Include="App_Data\Storage\OPER\" />
     <Folder Include="App_Data\Storage\TEMP\" />
-    <Folder Include="Areas\COMPRAS\Controllers\" />
     <Folder Include="Areas\COMPRAS\Models\" />
     <Folder Include="Areas\COMPRAS\Views\Shared\" />
     <Folder Include="Areas\FACTURACION\Controllers\" />
@@ -2890,7 +2897,6 @@
     <Folder Include="Areas\INVENTARIOS\Views\Shared\" />
     <Folder Include="Areas\TIENDAS\Models\" />
     <Folder Include="Areas\TIENDAS\Views\Horarios\" />
-    <Folder Include="Areas\TIENDAS\Views\Tiendas\" />
     <Folder Include="Areas\TIENDAS\Views\TipoTienda\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
@@ -2899,6 +2905,10 @@
       <Project>{cc1fa08e-daf7-4e88-9a09-8406c96b8d3d}</Project>
       <Name>BusinessLogic</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DbConector\DbConector.csproj">
+      <Project>{84495211-7827-445b-8fec-dd2581c075e2}</Project>
+      <Name>DbConector</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
       <Project>{be4f2820-065e-4613-a170-97d723e7db26}</Project>
       <Name>Models</Name>
@@ -2906,10 +2916,6 @@
     <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{2bbeb9c6-d2cd-47a7-b00b-4d258959b9af}</Project>
       <Name>Repository</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SqlServerDB\SqlServerDB.csproj">
-      <Project>{84495211-7827-445B-8FEC-DD2581C075E2}</Project>
-      <Name>SqlServerDB</Name>
     </ProjectReference>
     <ProjectReference Include="..\Utils\Utils.csproj">
       <Project>{f22c6b9e-912e-4123-9cc5-80818f723eed}</Project>

@@ -3,7 +3,7 @@ using Common.Utils;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
 using Models.INVENTARIOS;
-using SqlServerDB;
+using DbConnector;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +42,24 @@ namespace Web.Areas.INVENTARIOS.Controllers
         public JsonResult ListarGrid([DataSourceRequest]DataSourceRequest request)
         {
             var listarDropDown = _bl.ListarGrid();
+            if (!listarDropDown.Success)
+            {
+                ModelState.AddModelError("Error", listarDropDown.Message);
+                return Json(Enumerable.Empty<object>().ToDataSourceResult(request, ModelState));
+            }
+
+            //Salida Success 
+            var ds = new DataSourceResult()
+            {
+                Data = listarDropDown.Data,
+                Total = listarDropDown.Data.Count()
+            };
+            return Json(ds);
+        }
+
+        public JsonResult ListarDropDown([DataSourceRequest]DataSourceRequest request)
+        {
+            var listarDropDown = _bl.ListarDropDown();
             if (!listarDropDown.Success)
             {
                 ModelState.AddModelError("Error", listarDropDown.Message);

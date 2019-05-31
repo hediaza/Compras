@@ -1,6 +1,8 @@
 ﻿using BusinessLogic.TIENDAS;
+using Common.Utils;
 using Kendo.Mvc.Extensions;
 using Kendo.Mvc.UI;
+using Models.COMPRAS;
 using DbConnector;
 using System;
 using System.Collections.Generic;
@@ -9,17 +11,17 @@ using System.Web;
 using System.Web.Mvc;
 using Web.Controllers;
 
-namespace Web.Areas.TIENDAS.Controllers
+namespace Web.Areas.COMPRAS.Controllers
 {
-    public class TipoTiendaController : BaseController
+    public class ClienteController : BaseController
     {
         #region INIT
-        private TipoTiendaBL _bl;
+        private ClienteBL _bl;
 
-        public TipoTiendaController()
+        public ClienteController()
         {
             _db = new DapperSqlServerConnector();
-            _bl = new TipoTiendaBL(_db);
+            _bl = new ClienteBL(_db);
         }
         #endregion
 
@@ -42,6 +44,8 @@ namespace Web.Areas.TIENDAS.Controllers
             };
             return Json(ds);
         }
+        
         #endregion
+
     }
 }
