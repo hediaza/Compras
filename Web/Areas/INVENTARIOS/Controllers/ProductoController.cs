@@ -96,5 +96,84 @@ namespace Web.Areas.INVENTARIOS.Controllers
             return Json(result);
         }
         #endregion
+
+        #region UPDATE
+
+        [HttpGet]
+        public ActionResult Editar(int id)
+        {
+            var obtener = _bl.Obtener(id);
+            if (!obtener.Success)
+            {
+                ModelState.AddModelError("Error", obtener.Message);
+                return PartialView();
+            }
+
+            return PartialView(obtener.Data);
+        }
+
+        [HttpPost]
+        public JsonResult Editar(ProductoDTO productoDTO)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var editar = _bl.Editar(productoDTO);
+            if (!editar.Success)
+            {
+                result.Success = false;
+                result.Message = editar.Message;
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = editar.Message;
+
+            return Json(result);
+        }
+
+        #endregion
+
+        #region DELETE
+        [HttpPost]
+        public JsonResult Eliminar(int id)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Validaciones
+            if (!ModelState.IsValid)
+            {
+                result.Success = false;
+                result.Message = "Verifique la información registrada previmente.";
+                return Json(result);
+            }
+
+            // Acceso a logicas de negocio
+            var eliminar = _bl.Eliminar(id);
+            if (!eliminar.Success)
+            {
+                result.Success = false;
+                result.Message = eliminar.Message;
+                return Json(result);
+            }
+
+            // Salida
+            result.Success = true;
+            result.Message = eliminar.Message;
+
+            return Json(result);
+        }
+        #endregion
     }
 }

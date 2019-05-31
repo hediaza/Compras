@@ -748,6 +748,7 @@
     <Content Include="Areas\COMPRAS\Views\_ViewStart.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Index.cshtml" />
     <Content Include="Areas\INVENTARIOS\Views\Producto\Registrar.cshtml" />
+    <Content Include="Areas\INVENTARIOS\Views\Producto\Editar.cshtml" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />

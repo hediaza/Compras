@@ -73,8 +73,78 @@ namespace BusinessLogic.INVENTARIOS
         }
         #endregion
 
+        #region UPDATE
+        public Result<ProductoDTO> Obtener(int id)
+        {
+            // Inicializaciones
+            var result = new Result<ProductoDTO>();
 
+            // Registra entidad
+            try
+            {
+                result.Data = _repository.Obtener(id);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
 
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "Trasacción realizada satisfactoriamente";
+            return result;
+        }
+
+        public Result Editar(ProductoDTO procutoDTO)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Editar entidad
+            try
+            {
+                _repository.Editar(procutoDTO);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = e.Message;
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "La tienda se actualizó satisfactoriamente.";
+            return result;
+        }
+        #endregion
+
+        #region DELETE
+        public Result Eliminar(int id)
+        {
+            // Inicializaciones
+            var result = new Result();
+
+            // Eliminar entidad
+            try
+            {
+                _repository.Eliminar(id);
+            }
+            catch (Exception e)
+            {
+                result.Exception = e;
+                result.Message = "No fue posible eliminar el registro seleccionado.";
+                return result;
+            }
+
+            // Salida satisfcatoria
+            result.Success = true;
+            result.Message = "El producto se eliminó satisfactoriamente.";
+            return result;
+        }
+        #endregion
 
 
     }

@@ -65,6 +65,47 @@ namespace Repository.INVENTARIOS
         }
         #endregion
 
+        #region UPDATE
+        public ProductoDTO Obtener(int id)
+        {
+            var productoDTO = _db.GetConnection()
+                               .QuerySingle<ProductoDTO>(@"SELECT   p.Id, 
+                                                                    p.Nombre, 
+                                                                    p.Cantidad,  
+                                                                    p.Descuento,  
+                                                                    p.TiendaId,  
+                                                                    p.Valor,  
+                                                                    p.Codigo
+                                                        FROM dbo.Productos p
+                                                        WHERE p.Id = @id;", new { Id = id });
+
+
+
+            return productoDTO;
+        }
+
+        public void Editar(ProductoDTO productoDTO, IDbTransaction atom = null)
+        {
+            _db.GetConnection()
+               .Execute(@"UPDATE dbo.Productos 
+                            SET Nombre          = @Nombre,
+                                Cantidad        = @Cantidad,
+                                Descuento       = @Descuento,
+                                TiendaId        = @TiendaId,
+                                Valor           = @Valor,
+                                Codigo          = @Codigo
+                            WHERE Id = @Id;", productoDTO, atom);
+
+        }
+        #endregion
+
+        #region DELETE
+        public void Eliminar(int id, IDbTransaction atom = null)
+        {
+            _db.GetConnection()
+               .Execute(@"DELETE FROM dbo.Productos
+                          WHERE Id = @Id;", new { Id = id }, atom);        }
+        #endregion
     }
 }
 

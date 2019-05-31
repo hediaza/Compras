@@ -27,6 +27,7 @@ namespace Repository.TIENDAS
         }
         #endregion
 
+        #region CREATE
         public int Registrar(TiendaDTO tiendaDTO, IDbTransaction atom = null) {           
             int id = _db.GetConnection()
                         .QuerySingle<int>(@"INSERT INTO dbo.Tiendas (Nombre, 
@@ -41,6 +42,7 @@ namespace Repository.TIENDAS
 
             return id;
         }
+        #endregion
 
         public IEnumerable<TiendaGridDTO> ListarGrid() {
             var list = _db.GetConnection()
@@ -80,6 +82,7 @@ namespace Repository.TIENDAS
             return tiendaDTO;
         }
 
+        #region UPDATE
         public void Editar(TiendaDTO tiendaDTO, IDbTransaction atom = null)
         {
             _db.GetConnection()
@@ -90,12 +93,15 @@ namespace Repository.TIENDAS
                                 HorarioCierreId = @HorarioCierreId
                             WHERE Id = @Id;", tiendaDTO, atom);
         }
+        #endregion
 
+        #region DELETE
         public void Eliminar(int id, IDbTransaction atom = null)
         {
             _db.GetConnection()
                .Execute(@"DELETE FROM dbo.Tiendas
                           WHERE Id = @Id;", new { Id = id }, atom);
         }
+        #endregion
     }
 }
