@@ -18,7 +18,6 @@ namespace Repository.INVENTARIOS
 
     public class ProductoRepository : BaseRepository, IProductoRepository
     {
-
         #region INIT
         public ProductoRepository(IDbConnector db)
         {
