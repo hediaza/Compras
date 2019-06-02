@@ -15,6 +15,9 @@
                 </div>
             </li>
 
+            <li class="@Html.IsSelected(action: "Index", controller:"Dashboard")">
+                <a href="@Url.Action("Index", "Dashboard", new { area = "" })">Inicio</a>
+            </li>
 
             <li class="">
                 <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Modulo de Compras</span> <span class="fa arrow"></span></a>

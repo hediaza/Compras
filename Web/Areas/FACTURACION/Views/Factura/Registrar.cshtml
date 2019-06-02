@@ -15,13 +15,13 @@
     {
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h3 class="modal-title">Registrar producto</h3>
+            <h3 class="modal-title">Generar factura</h3>
         </div>
 
         <div class="modal-body">
             <div class="alert alert-info">
                 <strong><i class="fa fa-info-circle" aria-hidden="true"></i></strong>
-                Ingrese los datos del producto que desea registrar.
+                Diligencie la informacion para la generación de la factura
             </div>
 
             <div class="row">
@@ -29,22 +29,22 @@
                 <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.ClienteId)
                     @(Html.Kendo().DropDownListFor(m => m.ClienteId)
-                                    .DataTextField("Nombre")
-                                    .DataValueField("Id")
-                                    .HtmlAttributes(new { style = "width: 100%;" })
-                                    .OptionLabel("Seleccione...")
-                                    .Filter("contains")
-                                    .DataSource(source =>
-                                    {
-                                        source.Custom().Type("aspnetmvc-ajax")
-                                            .Transport(t =>
-                                            {
-                                                t.Read(r => r.Action("ListarCliente", "Factura", new { area = "FACTURACION" }));
-                                            })
-                                            .ServerFiltering(false)
-                                            .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
-                                            .Events(e => e.Error("Utils.onModelStateError"));
-                                    }).Events(e => e.Change("Registrar.seleccionarCliente")))
+                                .DataTextField("Nombre")
+                                .DataValueField("Id")
+                                .HtmlAttributes(new { style = "width: 100%;" })
+                                .OptionLabel("Seleccione...")
+                                .Filter("contains")
+                                .DataSource(source =>
+                                {
+                                    source.Custom().Type("aspnetmvc-ajax")
+                                        .Transport(t =>
+                                        {
+                                            t.Read(r => r.Action("ListarCliente", "Factura", new { area = "FACTURACION" }));
+                                        })
+                                        .ServerFiltering(false)
+                                        .Schema(s => { s.Data("Data").Total("Total").Errors("Errors"); })
+                                        .Events(e => e.Error("Utils.onModelStateError"));
+                                }).Events(e => e.Change("Registrar.seleccionarCliente")))
                     @Html.ValidationMessageFor(m => m.ClienteId)
                 </div>
                 <div class="form-group col-md-12">
@@ -74,53 +74,45 @@
                 <div class="form-group col-md-12">
                     @Html.LabelFor(m => m.Total)
                     @(Html.Kendo().NumericTextBoxFor(m => m.Total)
-                                  .Format("c").Min(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
+                              .Format("c").Min(0).HtmlAttributes(new { @class = "", @style = "width: 100%;" }))
                     @Html.ValidationMessageFor(m => m.Total)
-                </div>           
+                </div>
 
-            </div>
-
-            <!-- Contenidos -->
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="wrapper wrapper-content">
-                        @(Html.Kendo().Grid<OrdenesCompraDTO>()
-                                .Name("gridOrden")
-                                .Columns(columns =>
-                                {
-                                    columns.Bound(p => p.Id).Width(80).Filterable(f => f.Enabled(false));
-                                    columns.Bound(p => p.ClienteId);
-                                    columns.Bound(p => p.Estado);
-                                    columns.Bound(p => p.TiendaId);
-                                    columns.Bound(p => p.Total);
-                                    columns.Bound(c => c.Id).ClientTemplate("#=Index.actionTemplate(data)#").Title("Acciones").Width(230).Filterable(false);
-                                })
-                                .Selectable()
-                                .Filterable(f => f.Mode(GridFilterMode.Row))
-                                .Pageable(p => p.Refresh(true))
-                                .Sortable(s => s.Enabled(false))
-                                .Scrollable()
-                                .HtmlAttributes(new { style = "height:550px;" })
-                                .AutoBind(false)
-                                .Events(e => e.DataBound("App.handleModal").DataBound("Registrar.calcularTotal"))
-                                .DataSource(dataSource => dataSource
-                                    .Ajax()
-                                    .ServerOperation(false)
-                                    .Events(e => e.Error("Utils.onModelStateError"))
-                                    .PageSize(10)
-                                    .Read(read => read.Action("ListarOrdenes", "Factura",new { area ="FACTURACION"}).Data("Registrar.getClientId"))
-                                    .ServerOperation(false)
-                                ))
-                    </div>
+                <div class="form-group col-lg-12">
+                    @(Html.Kendo().Grid<OrdenesCompraDTO>()
+                        .Name("gridOrden")
+                        .Columns(columns =>
+                        {
+                            columns.Bound(p => p.Id).Width(80).Filterable(f => f.Enabled(false));
+                            columns.Bound(p => p.ClienteId);
+                            columns.Bound(p => p.Estado);
+                            columns.Bound(p => p.TiendaId);
+                            columns.Bound(p => p.Total);
+                        //columns.Bound(c => c.Id).ClientTemplate("#=Index.actionTemplate(data)#").Title("Acciones").Width(230).Filterable(false);
+                    })
+                        .Selectable()
+                        .Filterable(f => f.Enabled(false))
+                        .Pageable(p => p.Enabled(false))
+                        .Sortable(s => s.Enabled(false))
+                        .Scrollable()
+                        .HtmlAttributes(new { style = "height:300px;" })
+                        .AutoBind(false)
+                        .Events(e => e.DataBound("App.handleModal").DataBound("Registrar.calcularTotal"))
+                        .DataSource(dataSource => dataSource
+                            .Ajax()
+                            .Events(e => e.Error("Utils.onModelStateError"))
+                            .PageSize(10)
+                            .Read(read => read.Action("ListarOrdenes", "Factura", new { area = "FACTURACION" }).Data("Registrar.getClientId"))
+                            .ServerOperation(false)
+                        ))
                 </div>
             </div>
-
 
         </div>
 
         <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
-            <input type="submit" class="btn btn-primary" value="Guardar">
+            <input type="submit" class="btn btn-primary" value="Generar">
         </div>
     }
 

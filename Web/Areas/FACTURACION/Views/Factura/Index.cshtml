@@ -5,15 +5,13 @@
     var viewName = Path.GetFileNameWithoutExtension(VirtualPath);
 }
 
-
-
 <div id="@viewName">
     <!-- Scripts -->
     <script src="@Url.Content(Utils.GetJsFilePath(VirtualPath))"></script>
     <!-- Plantilla que se utilizará en la columna de acciones de la grilla -->
     <script id="actionTemplate" type="text/x-kendo-template">
         <div class='text-center'>
-            <a class='btn btn-primary' data-modal="" href='@Url.Action("Editar", "Factura", new { area = "FACTURACION" })/#=data.Id#'>Editar</a>
+            <a class='btn btn-primary' data-modal="modal-lg" href='@Url.Action("Editar", "Factura", new { area = "FACTURACION" })/#=data.Id#'>Imprimir</a>
         </div>
     </script>
 
@@ -25,7 +23,7 @@
         </div>
         <div class="col-sm-8">
             <div class="title-action">
-                <a class='btn btn-primary' data-modal="" href="@Url.Action("Registrar", "Factura", new { area = "FACTURACION" })">Registrar</a>
+                <a class='btn btn-primary' data-modal="modal-lg" href="@Url.Action("Registrar", "Factura", new { area = "FACTURACION" })">Generar</a>
             </div>
         </div>
     </div>

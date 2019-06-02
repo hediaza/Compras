@@ -30,7 +30,7 @@ namespace Models.FACTURAS
         public DateTime FechaDesembarque { get; set; }
 
         [Required]
-        [Display(Name = "Codigo")]
+        [Display(Name = "Total")]
         public int Total { get; set; }
 
         [Display(Name = "Codigo")]
