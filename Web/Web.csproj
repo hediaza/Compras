@@ -201,6 +201,7 @@
     <Compile Include="Areas\COMPRAS\Controllers\CompraController.cs" />
     <Compile Include="Areas\FACTURACION\Controllers\FacturaController.cs" />
     <Compile Include="Areas\FACTURACION\FACTURACIONAreaRegistration.cs" />
+    <Compile Include="Areas\GLOBAL\GLOBALAreaRegistration.cs" />
     <Compile Include="Areas\INVENTARIOS\Controllers\ProductoController.cs" />
     <Compile Include="Areas\INVENTARIOS\INVENTARIOSAreaRegistration.cs" />
     <Compile Include="Areas\TIENDAS\Controllers\HorarioController.cs" />
@@ -758,6 +759,7 @@
     <Content Include="Areas\COMPRAS\Views\Compra\Index.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Registrar.cshtml" />
     <Content Include="Areas\COMPRAS\Views\Compra\Detalle.cshtml" />
+    <Content Include="Areas\GLOBAL\Views\web.config" />
     <None Include="packages.config" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -2890,9 +2892,11 @@
     <Folder Include="App_Data\Storage\TEMP\" />
     <Folder Include="Areas\COMPRAS\Models\" />
     <Folder Include="Areas\COMPRAS\Views\Shared\" />
-    <Folder Include="Areas\FACTURACION\Controllers\" />
     <Folder Include="Areas\FACTURACION\Models\" />
     <Folder Include="Areas\FACTURACION\Views\Shared\" />
+    <Folder Include="Areas\GLOBAL\Controllers\" />
+    <Folder Include="Areas\GLOBAL\Models\" />
+    <Folder Include="Areas\GLOBAL\Views\Shared\" />
     <Folder Include="Areas\INVENTARIOS\Models\" />
     <Folder Include="Areas\INVENTARIOS\Views\Shared\" />
     <Folder Include="Areas\TIENDAS\Models\" />
