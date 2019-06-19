@@ -195,56 +195,56 @@
   <!-- Inicio modificación realizada por el DSL-->
   
   <ItemGroup>
-    <Compile Include="**\*.cs" />
+    <Compile Include="**\*.cs" Exclude="obj\**;bin\**"/>
   </ItemGroup>
   
   <ItemGroup>
-    <Content Include="**\*.js" >
+    <Content Include="**\*.js" Exclude="obj\**;bin\**">
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.png"> 
+	<Content Include="**\*.png" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.gif" > 
+	<Content Include="**\*.gif" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.css" > 
+	<Content Include="**\*.css" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.config" > 
+	<Content Include="**\*.config" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.cshtml" > 
+	<Content Include="**\*.cshtml" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.map" > 
+	<Content Include="**\*.map" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.svg" > 
+	<Content Include="**\*.svg" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.txt" > 
+	<Content Include="**\*.txt" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.eot" > 
+	<Content Include="**\*.eot" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.ttf" > 
+	<Content Include="**\*.ttf" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.woff" > 
+	<Content Include="**\*.woff" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.woff2" > 
+	<Content Include="**\*.woff2" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.otf" > 
+	<Content Include="**\*.otf" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.less" > 
+	<Content Include="**\*.less" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
-	<Content Include="**\*.scss" > 
+	<Content Include="**\*.scss" Exclude="obj\**;bin\**"> 
 		<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	</Content>
   </ItemGroup>
