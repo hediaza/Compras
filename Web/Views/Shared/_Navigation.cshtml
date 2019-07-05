@@ -1,4 +1,4 @@
-﻿<nav class="navbar-default navbar-static-side" role="navigation">
+<nav class="navbar-default navbar-static-side" role="navigation">
     <div class="sidebar-collapse">
         <ul class="nav metismenu" id="side-menu">
             <li class="nav-header">
@@ -15,44 +15,29 @@
                 </div>
             </li>
 
-
-            <li class="">
-                <a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Modulo de Compras</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse ">
-                    <li class="@Html.IsSelected(action: "Index", controller:"Dashboard")">
-                        <a href="@Url.Action("???", "???", new { area = "???"})">Compras</a>
-                    </li>
-                </ul>
+            <li class="@Html.IsSelected(action: "Index", controller:"Dashboard")">
+                <a href="@Url.Action("Index", "Dashboard", new { area = "" })">Inicio</a>
             </li>
-
+			
+			<!-- Incio contenido dimánico generado por el DSL -->
             <li class="">
-                <a href="#"><i class="fa fa-home" aria-hidden="true"></i> <span class="nav-label">Módulo de Tiendas</span> <span class="fa arrow"></span></a>
+            	<a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Modulo de Tiendas(s)</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse ">
                     <li class="@Html.IsSelected(action: "Index", controller:"Tienda")">
-                        <a href="@Url.Action("Index", "Tienda", new { area = "TIENDAS"})">Tiendas</a>
+                        <a href="@Url.Action("Index", "Tienda", new { area = "TIENDAS"})">Tienda(s)</a>
                     </li>
                 </ul>
             </li>
-
             <li class="">
-                <a href="#"><i class="fa fa-list-ul" aria-hidden="true"></i> <span class="nav-label">Módulo de Inventarios</span> <span class="fa arrow"></span></a>
+            	<a href="#"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Modulo de Inventarios(s)</span> <span class="fa arrow"></span></a>
                 <ul class="nav nav-second-level collapse ">
                     <li class="@Html.IsSelected(action: "Index", controller:"Producto")">
-                        <a href="@Url.Action("Index", "Producto", new { area = "INVENTARIOS"})">Productos</a>
+                        <a href="@Url.Action("Index", "Producto", new { area = "INVENTARIOS"})">Producto(s)</a>
                     </li>
                 </ul>
             </li>
-
-            <li class="">
-                <a href="#"><i class="fa fa-file-pdf-o" aria-hidden="true"></i> <span class="nav-label">Módulo de Facturación</span> <span class="fa arrow"></span></a>
-                <ul class="nav nav-second-level collapse ">
-                    <li class="@Html.IsSelected(action: "???", controller:"???")">
-                        <a href="@Url.Action("???", "???", new { area = "???"})">Facturación</a>
-                    </li>
-                </ul>
-            </li>
-
-
+			<!-- Fin contenido dimánico generado por el DSL -->
         </ul>
     </div>
 </nav>
+
